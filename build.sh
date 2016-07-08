@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ev
+
 docker pull wnameless/oracle-xe-11g
 docker pull collinestes/docker-node-oracle
 
