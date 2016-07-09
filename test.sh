@@ -2,7 +2,7 @@
 
 export NODE_ENV=development
 
-npm --loglevel warn simple-oracledb
+npm --loglevel warn install simple-oracledb
 cd ./node_modules/simple-oracledb
 
 npm --loglevel warn install
