@@ -12,8 +12,12 @@ docker build -t test .
 docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
 docker ps -a
 
-docker run -td --cidfile ./test.cid test
+docker run --name test -td --cidfile ./test.cid test
 docker ps -a
 
 TEST_CONTAINER=$(cat ./test.cid)
 echo "container ID: $TEST_CONTAINER"
+
+docker wait test
+
+docker ps -a
