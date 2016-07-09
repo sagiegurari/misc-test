@@ -14,7 +14,3 @@ docker ps -a
 
 TEST_CONTAINER=$(cat ./test.cid)
 echo "container ID: $TEST_CONTAINER"
-
-docker cp ./test.sh | $TEST_CONTAINER:/test.sh
-
-docker exec $TEST_CONTAINER "/test.sh"
