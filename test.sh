@@ -1,9 +1,10 @@
 #!/bin/bash
 
-export NODE_ENV=development
+wget https://github.com/sagiegurari/simple-oracledb/archive/master.zip
+unzip master.zip
+cd ./simple-oracledb-master
 
-npm --loglevel warn install simple-oracledb
-cd ./node_modules/simple-oracledb
+export NODE_ENV=development
 
 npm --loglevel warn install
 npm --loglevel warn install oracledb
