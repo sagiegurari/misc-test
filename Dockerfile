@@ -6,4 +6,8 @@ WORKDIR /test
 ADD ./* /test/
 RUN chmod -R 777 /test
 
+ENV TEST_ORACLE_USER=system
+ENV TEST_ORACLE_PASSWORD=oracle
+ENV TEST_ORACLE_CONNECTION_STRING=localhost/XE
+
 CMD ["./test.sh"]
