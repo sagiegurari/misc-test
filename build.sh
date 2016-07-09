@@ -6,7 +6,8 @@ docker pull wnameless/oracle-xe-11g
 
 docker build -t sagiegurari/test:1.0 .
 
-docker run -d -p 49160:22 -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+#-p 49160:22 
+docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
 docker ps -a
 
 docker run -td --cidfile ./test.cid sagiegurari/test
