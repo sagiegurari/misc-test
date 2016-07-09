@@ -3,6 +3,6 @@ FROM collinestes/docker-node-oracle
 
 RUN mkdir /test
 WORKDIR /test
-ADD ./* /test
+ADD ./* /test/
 
 CMD ["./test.sh"]
