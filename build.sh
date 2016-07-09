@@ -4,7 +4,7 @@ set -ev
 
 docker pull wnameless/oracle-xe-11g
 
-docker build -t sagiegurari/test:1.0 .
+docker build -t test .
 
 #docker stop $(docker ps -a -q)
 
@@ -12,7 +12,7 @@ docker build -t sagiegurari/test:1.0 .
 docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
 docker ps -a
 
-docker run -td --cidfile ./test.cid sagiegurari/test
+docker run -td --cidfile ./test.cid test
 docker ps -a
 
 TEST_CONTAINER=$(cat ./test.cid)
