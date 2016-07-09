@@ -12,4 +12,4 @@ docker build -t test .
 docker run -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
 docker ps -a
 
-docker run --name test -t --cidfile ./test.cid test
+docker run --add-host dockerhost:`/sbin/ip route|awk '/default/ { print  $3}'` --name test -t --cidfile ./test.cid test
