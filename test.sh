@@ -14,9 +14,11 @@ echo "OCI_INCLUDE_DIR: $OCI_INCLUDE_DIR"
 ls -l $OCI_INCLUDE_DIR
 echo "----------------"
 
-npm --loglevel warn -g --production install mocha chai
+npm --loglevel warn -g --production install mocha
 
 npm --loglevel warn --production install
+
+npm --loglevel warn --production install chai
 
 npm --loglevel info --production --unsafe-perm install oracledb
 
