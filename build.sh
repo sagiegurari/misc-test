@@ -2,15 +2,17 @@
 
 set -ev
 
-docker pull wnameless/oracle-xe-11g
+#docker stop $(docker ps -a -q)
 
-#-p 49160:22 
-docker run -d -p 35353:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+#docker pull wnameless/oracle-xe-11g
+#docker run -d -p 35353:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+
+docker pull alexeiled/docker-oracle-xe-11g
+docker run -d --shm-size=1g -p 35353:1521 alexeiled/docker-oracle-xe-11g
+
 docker ps -a
 
 docker build -t test .
-
-#docker stop $(docker ps -a -q)
 
 export PARENT_HOST=`/sbin/ip route|awk '/default/ { print  $3}'`
 echo "parent host: ${PARENT_HOST}"
