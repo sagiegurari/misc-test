@@ -17,4 +17,4 @@ echo "parent host: ${PARENT_HOST}"
 
 export DB_CONNECT_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${PARENT_HOST})(PORT=35353))(CONNECT_DATA=(SID=xe)))"
 
-docker run --env TEST_ORACLE_CONNECTION_STRING="${PARENT_HOST}/XE" --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
+docker run --env TEST_ORACLE_CONNECTION_STRING="${DB_CONNECT_STRING}" --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
