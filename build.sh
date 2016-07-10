@@ -12,4 +12,7 @@ docker build -t test .
 
 #docker stop $(docker ps -a -q)
 
-docker run --add-host dockerhost:`/sbin/ip route|awk '/default/ { print  $3}'` --name test -t --cidfile ./test.cid test
+export PARENT_HOST=`/sbin/ip route|awk '/default/ { print  $3}'`
+echo "parent host: ${PARENT_HOST}"
+
+docker run --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
