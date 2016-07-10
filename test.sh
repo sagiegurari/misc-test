@@ -20,4 +20,8 @@ npm --loglevel warn --production install chai
 
 npm --loglevel warn --production --unsafe-perm install oracledb
 
+echo "TEST_ORACLE_USER: ${TEST_ORACLE_USER}"
+echo "TEST_ORACLE_PASSWORD: ${TEST_ORACLE_PASSWORD}"
+echo "TEST_ORACLE_CONNECTION_STRING: ${TEST_ORACLE_CONNECTION_STRING}"
+
 mocha ./test/spec/integration-spec.js
