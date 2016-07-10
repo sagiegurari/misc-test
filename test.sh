@@ -4,9 +4,14 @@ wget https://github.com/sagiegurari/simple-oracledb/archive/master.zip
 unzip master.zip
 cd ./simple-oracledb-master
 
-export NODE_ENV=development
+tree $OCI_LIB_DIR
 
-npm --loglevel warn install
-npm --loglevel info --unsafe-perm install oracledb
+tree $OCI_INCLUDE_DIR
 
-npm run grunt mocha_istanbul:coverage --force
+npm --loglevel warn -g --production install mocha chai
+
+npm --loglevel warn --production install
+
+npm --loglevel info --production --unsafe-perm install oracledb
+
+mocha ./test/spec/integration-spec.js
