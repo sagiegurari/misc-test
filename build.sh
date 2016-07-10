@@ -15,6 +15,6 @@ docker build -t test .
 export PARENT_HOST=`/sbin/ip route|awk '/default/ { print  $3}'`
 echo "parent host: ${PARENT_HOST}"
 
-export DB_CONNECT_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${PARENT_HOST})(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=XE)))"
+export DB_CONNECT_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${PARENT_HOST})(PORT=1521))(CONNECT_DATA=(SID=XE)))"
 
 docker run --env TEST_ORACLE_CONNECTION_STRING="${PARENT_HOST}/XE" --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
