@@ -15,4 +15,4 @@ docker build -t test .
 export PARENT_HOST=`/sbin/ip route|awk '/default/ { print  $3}'`
 echo "parent host: ${PARENT_HOST}"
 
-docker run --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
+docker run --env TEST_ORACLE_CONNECTION_STRING="${PARENT_HOST}/XE" --add-host dockerhost:${PARENT_HOST} --name test -t --cidfile ./test.cid test
