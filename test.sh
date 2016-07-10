@@ -7,8 +7,6 @@ cd ./simple-oracledb-master
 export NODE_ENV=development
 
 npm --loglevel warn install
-npm --loglevel warn install oracledb
-
-cp /test/oracle-test.js ./test/spec/
+npm --loglevel info install oracledb
 
 npm run grunt mocha_istanbul:coverage --force
