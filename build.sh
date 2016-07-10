@@ -4,11 +4,11 @@ set -ev
 
 #docker stop $(docker ps -a -q)
 
-#docker pull wnameless/oracle-xe-11g
-#docker run -d -p 35353:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+docker pull wnameless/oracle-xe-11g
+docker run -d -p 35353:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
 
-docker pull alexeiled/docker-oracle-xe-11g
-docker run -d -p 35353:1521 alexeiled/docker-oracle-xe-11g
+#docker pull alexeiled/docker-oracle-xe-11g
+#docker run -d -p 35353:1521 alexeiled/docker-oracle-xe-11g
 
 docker ps -a
 
