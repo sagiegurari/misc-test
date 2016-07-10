@@ -26,4 +26,7 @@ echo "TEST_ORACLE_USER: ${TEST_ORACLE_USER}"
 echo "TEST_ORACLE_PASSWORD: ${TEST_ORACLE_PASSWORD}"
 echo "TEST_ORACLE_CONNECTION_STRING: ${TEST_ORACLE_CONNECTION_STRING}"
 
+#wait for db to be up
+sleep 30
+
 mocha ./test/spec/integration-spec.js
