@@ -20,6 +20,8 @@ npm --loglevel warn --production install chai
 
 npm --loglevel warn --production --unsafe-perm install oracledb
 
+export DB_CONNECT_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${DB_PORT_1521_TCP_ADDR})(PORT=${DB_PORT_1521_TCP_PORT}))(CONNECT_DATA=(SID=xe)))"
+
 echo "TEST_ORACLE_USER: ${TEST_ORACLE_USER}"
 echo "TEST_ORACLE_PASSWORD: ${TEST_ORACLE_PASSWORD}"
 echo "TEST_ORACLE_CONNECTION_STRING: ${TEST_ORACLE_CONNECTION_STRING}"
