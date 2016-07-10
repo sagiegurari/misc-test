@@ -4,12 +4,14 @@ wget https://github.com/sagiegurari/simple-oracledb/archive/master.zip
 unzip master.zip
 cd ./simple-oracledb-master
 
+export OCI_LIB_DIR="/opt/oracle/instantclient"
+
 echo "OCI_LIB_DIR: $OCI_LIB_DIR"
-tree $OCI_LIB_DIR
+ls -l $OCI_LIB_DIR
 echo "----------------"
 
 echo "OCI_INCLUDE_DIR: $OCI_INCLUDE_DIR"
-tree $OCI_INCLUDE_DIR
+ls -l $OCI_INCLUDE_DIR
 echo "----------------"
 
 npm --loglevel warn -g --production install mocha chai
