@@ -243,6 +243,8 @@ function runAll() {
             runSuites([oracledbTest, queryTest, rsTest, streamTest], 10, function () {
                 runSuites([oracledbTest, queryTest, rsTest, streamTest], 1000, function (err, states) {
                     console.log(JSON.stringify(states, undefined, 2));
+
+                    console.log(states[0].average, '|', states[1].average, '|', states[2].average, '|', states[3].average);
                 });
             });
         });
