@@ -1,6 +1,7 @@
 {
-  "name": "simple-oracledb",
+  "name": "oracledb-perf-test",
   "version": "0.0.1",
+  "private": true,
   "description": "Performance tests for oracledb",
   "author": {
     "name": "Sagie Gur-Ari",
