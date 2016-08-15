@@ -22,15 +22,25 @@ function runTest(state, test, callback) {
 
         onError(error);
 
-        var diff = diff || end - start;
+        var diffFull = end - start;
+
+        state.counter++;
+
         if ((state.min === -1) || (state.min > diff)) {
             state.min = diff;
         }
         if ((state.min === -1) || (state.max < diff)) {
             state.max = diff;
         }
-        state.counter++;
         state.total = state.total + diff;
+
+        if ((state.minFull === -1) || (state.minFull > diffFull)) {
+            state.minFull = diffFull;
+        }
+        if ((state.maxFull === -1) || (state.maxFull < diffFull)) {
+            state.maxFull = diffFull;
+        }
+        state.totalFull = state.totalFull + diffFull;
 
         setTimeout(callback, 0);
     });
@@ -42,8 +52,11 @@ function runSuite(test, loops, callback) {
     var state = {
         counter: 0,
         total: 0,
+        totalFull: 0,
         min: -1,
-        max: -1
+        max: -1,
+        minFull: -1,
+        maxFull: -1
     };
 
     asyncLib.until(function () {
@@ -54,6 +67,7 @@ function runSuite(test, loops, callback) {
         onError(error);
 
         state.average = state.total / state.counter;
+        state.averageFull = state.totalFull / state.counter;
 
         callback(null, state);
     });
@@ -186,7 +200,7 @@ function runAll() {
 
                 var i;
                 var rowsData = [];
-                for (i = 0; i < 500; i++) {
+                for (i = 0; i < 5000; i++) {
                     rowsData.push({
                         COL1: 'PK' + i,
                         COL2: i,
