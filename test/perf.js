@@ -17,12 +17,12 @@ function onError(error) {
 function runTest(state, test, callback) {
     var start = Date.now();
 
-    test(function (error) {
+    test(function (error, diff) {
         var end = Date.now();
 
         onError(error);
 
-        var diff = end - start;
+        var diff = diff || end - start;
         if ((state.min === -1) || (state.min > diff)) {
             state.min = diff;
         }
@@ -82,12 +82,16 @@ function getOracledbTest(pool) {
         pool.getConnection(function (err, connection) {
             onError(err);
 
+            var start = Date.now();
             connection.execute('SELECT * FROM TEST_PERF1', [], {
                 maxRows: 100000
             }, function (qErr) {
+                var diff = Date.now() - start;
                 onError(qErr);
 
-                connection.close(callback);
+                connection.close(function () {
+                    callback(qErr, diff);
+                });
             });
         });
     };
@@ -95,35 +99,59 @@ function getOracledbTest(pool) {
 
 function getQueryTest(pool) {
     return function (callback) {
+        var diff;
         pool.run(function (connection, cb) {
+            var start = Date.now();
             connection.query('SELECT * FROM TEST_PERF1', [], {
                 maxRows: 100000
-            }, cb);
-        }, callback);
+            }, function (error) {
+                diff = Date.now() - start;
+
+                cb(error);
+            });
+        }, function (error) {
+            callback(error, diff);
+        });
     };
 }
 
 function getRSTest(pool) {
     return function (callback) {
+        var diff;
         pool.run(function (connection, cb) {
+            var start = Date.now();
             connection.query('SELECT * FROM TEST_PERF1', [], {
                 resultSet: true
-            }, cb);
-        }, callback);
+            }, function (error) {
+                diff = Date.now() - start;
+
+                cb(error);
+            });
+        }, function (error) {
+            callback(error, diff);
+        });
     };
 }
 
 function getStreamTest(pool) {
     return function (callback) {
+        var diff;
         pool.run(function (connection, cb) {
+            var start = Date.now();
             var stream = connection.query('SELECT * FROM TEST_PERF1', [], {
                 streamResults: true
             });
 
             stream.on('error', onError);
             stream.on('data', function () {});
-            stream.on('end', cb);
-        }, callback);
+            stream.on('end', function () {
+                diff = Date.now() - start;
+
+                cb();
+            });
+        }, function (error) {
+            callback(error, diff);
+        });
     };
 }
 
