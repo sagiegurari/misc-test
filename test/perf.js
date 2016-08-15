@@ -158,7 +158,7 @@ function runAll() {
 
                 var i;
                 var rowsData = [];
-                for (i = 0; i < 15000; i++) {
+                for (i = 0; i < 500; i++) {
                     rowsData.push({
                         COL1: 'PK' + i,
                         COL2: i,
