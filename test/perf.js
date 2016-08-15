@@ -2,6 +2,8 @@ var asyncLib = require('async');
 var oracledb = require('oracledb');
 var SimpleOracleDB = require('simple-oracledb');
 
+const MAX_ROWS = 5000;
+
 var exit = process.exist;
 process.exit = function () {
     setTimeout(exit, 500);
@@ -201,7 +203,7 @@ function runAll() {
 
                 var i;
                 var rowsData = [];
-                for (i = 0; i < 5000; i++) {
+                for (i = 0; i < MAX_ROWS; i++) {
                     rowsData.push({
                         COL1: 'PK' + i,
                         COL2: i,
