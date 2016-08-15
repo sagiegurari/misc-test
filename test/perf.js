@@ -68,6 +68,7 @@ function runSuite(test, loops, callback) {
 
         state.average = state.total / state.counter;
         state.averageFull = state.totalFull / state.counter;
+        state.averageDiff = state.averageFull - state.average;
 
         callback(null, state);
     });
