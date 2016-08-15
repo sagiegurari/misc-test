@@ -102,13 +102,17 @@ function getOracledbTest(pool) {
             var start = Date.now();
             connection.execute('SELECT * FROM TEST_PERF1', [], {
                 maxRows: 100000
-            }, function (qErr) {
+            }, function (qErr, result) {
                 var diff = Date.now() - start;
                 onError(qErr);
 
-                connection.close(function () {
-                    callback(qErr, diff);
-                });
+                if (result.rows.length !== MAX_ROWS) {
+                    onError(new Error('[OracledbTest] invalid result, ' + result.rows.length));
+                } else {
+                    connection.close(function () {
+                        callback(qErr, diff);
+                    });
+                }
             });
         });
     };
@@ -121,10 +125,14 @@ function getQueryTest(pool) {
             var start = Date.now();
             connection.query('SELECT * FROM TEST_PERF1', [], {
                 maxRows: 100000
-            }, function (error) {
+            }, function (error, result) {
                 diff = Date.now() - start;
 
-                cb(error);
+                if (result.length !== MAX_ROWS) {
+                    onError(new Error('[QueryTest] invalid result, ' + result.length));
+                } else {
+                    cb(error);
+                }
             });
         }, function (error) {
             callback(error, diff);
@@ -139,10 +147,14 @@ function getRSTest(pool) {
             var start = Date.now();
             connection.query('SELECT * FROM TEST_PERF1', [], {
                 resultSet: true
-            }, function (error) {
+            }, function (error, result) {
                 diff = Date.now() - start;
 
-                cb(error);
+                if (result.length !== MAX_ROWS) {
+                    onError(new Error('[RSTest] invalid result, ' + result.length));
+                } else {
+                    cb(error);
+                }
             });
         }, function (error) {
             callback(error, diff);
