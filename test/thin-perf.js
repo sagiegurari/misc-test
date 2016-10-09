@@ -95,24 +95,34 @@ function runSuites(tests, loops, callback) {
 
 function getQueryTest(dbData) {
     var connection = {
-        query: function () {
-            arguments[arguments.length - 1](dbData);
+        execute: function () {
+            arguments[arguments.length - 1](null, dbData);
         }
     };
     SimpleOracleDB.extend(connection);
+
+    dbData = {
+        metaData: Object.keys(dbData[0]),
+        rows: dbData
+    };
 
     return function (callback) {
         var diff;
         var start = Date.now();
         connection.query('SELECT * FROM TEST_PERF1', [], {
-            maxRows: 100000
+            maxRows: 100000,
+            resultSet: false
         }, function (error, result) {
             diff = Date.now() - start;
 
-            if (result.length !== MAX_ROWS) {
-                callback(new Error('[QueryTest] invalid result, ' + result.length));
+            if (error) {
+                callback(error);
             } else {
-                callback(error, diff);
+                if (result.length !== MAX_ROWS) {
+                    callback(new Error('[QueryTest] invalid result, ' + result.length));
+                } else {
+                    callback(null, diff);
+                }
             }
         });
     };
