@@ -8,6 +8,15 @@ process.exit = function () {
     setTimeout(exit, 500);
 };
 
+function gc() {
+    if (global.gc) {
+        var i;
+        for (i = 0; i < 3; i++) {
+            global.gc();
+        }
+    }
+}
+
 function onError(error) {
     if (error) {
         console.error(error);
@@ -63,6 +72,8 @@ function runSuite(test, loops, callback) {
     asyncLib.until(function () {
         return state.counter >= loops;
     }, function (cb) {
+        gc();
+
         runTest(state, test, cb);
     }, function (error) {
         onError(error);
@@ -83,7 +94,9 @@ function runSuites(tests, loops, callback) {
         funcs.push(function (cb) {
             runSuite(test, loops, function (error, state) {
                 onError(error);
-                console.log('runSuite end...', state);
+
+                gc();
+                console.log('runSuite end...\n', state, '\nmemory usage:', process.memoryUsage());
 
                 cb(error, state);
             });
@@ -142,14 +155,21 @@ function runAll() {
 
     var queryTest = getQueryTest(rowsData);
 
-    runSuites([ queryTest], 10, function () {
-        runSuites([queryTest], 1000, function (err, states) {
-            console.log(JSON.stringify(states, undefined, 2));
-
-            states.forEach((testStates) => {
-                console.log(testStates);
-            });
-        });
+    asyncLib.series([
+        function (cb) {
+            runSuites([queryTest], 10, cb);
+        },
+        function (cb) {
+            runSuites([queryTest], 100, cb);
+        },
+        function (cb) {
+            runSuites([queryTest], 100, cb);
+        },
+        function (cb) {
+            runSuites([queryTest], 10, cb);
+        }
+    ], function() {
+        process.exit();
     });
 }
 
