@@ -169,7 +169,7 @@ function runAll() {
         function (cb) {
             runSuites([queryTest], 10, cb);
         }
-    ], function() {
+    ], function () {
         process.exit();
     });
 }
