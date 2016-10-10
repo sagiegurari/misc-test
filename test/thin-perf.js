@@ -25,6 +25,8 @@ function onError(error) {
 }
 
 function runTest(state, test, callback) {
+    gc();
+
     var start = Date.now();
 
     test(function (error, diff) {
@@ -52,6 +54,7 @@ function runTest(state, test, callback) {
         }
         state.totalFull = state.totalFull + diffFull;
 
+        gc();
         setTimeout(callback, 0);
     });
 }
@@ -72,8 +75,6 @@ function runSuite(test, loops, callback) {
     asyncLib.until(function () {
         return state.counter >= loops;
     }, function (cb) {
-        gc();
-
         runTest(state, test, cb);
     }, function (error) {
         onError(error);
