@@ -167,6 +167,12 @@ function runAll() {
             runSuites([queryTest], 100, cb);
         },
         function (cb) {
+            runSuites([queryTest], 100, cb);
+        },
+        function (cb) {
+            runSuites([queryTest], 100, cb);
+        },
+        function (cb) {
             runSuites([queryTest], 10, cb);
         }
     ], function () {
