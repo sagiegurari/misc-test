@@ -138,7 +138,7 @@ describe('Stability Tests', function () {
                     assert.equal(rowData.length, results.length);
                     assert.equal(1, results[0].rowsAffected);
 
-                    connection.query('SELECT * FROM ' + table + ' ORDER BY COL1 ASC', function (queryError, jsRows) {
+                    connection.query('SELECT * FROM ' + table + ' ORDER BY COL2 ASC', function (queryError, jsRows) {
                         assert.isNull(queryError);
                         assert.equal(jsRows.length, rowData.length);
 
