@@ -30,3 +30,4 @@ echo "TEST_ORACLE_CONNECTION_STRING: ${TEST_ORACLE_CONNECTION_STRING}"
 sleep 30
 
 mocha ./test/spec/integration-spec.js
+mocha ./test/external/stability-spec.js
