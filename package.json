@@ -1,0 +1,16 @@
+{
+  "name": "misc-test",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-release": "^0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagiegurari/misc-test.git"
+  },
+  "author": "Sagie Gur-Ari",
+  "license": "MIT"
+}
