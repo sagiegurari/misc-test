@@ -11,6 +11,9 @@
     "type": "git",
     "url": "git+https://github.com/sagiegurari/misc-test.git"
   },
+  "scripts": {
+    "release": "grunt default"
+  },
   "author": "Sagie Gur-Ari",
   "license": "MIT"
 }
