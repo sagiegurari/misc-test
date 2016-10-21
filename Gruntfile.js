@@ -17,7 +17,7 @@ module.exports = function (grunt) {
                 folder: 'folder/to/publish/to/npm', //default project root
                 tagName: '<%= version %>', //default: '<%= version %>'
                 commitMessage: 'check out my release <%= version %>', //default: 'release <%= version %>'
-                tagMessage: 'tagging version <%= version %>', //default: 'Version <%= version %>',
+                tagMessage: '<%= version %>', //default: 'Version <%= version %>',
                 beforeBump: [], // optional grunt tasks to run before file versions are bumped
                 afterBump: [], // optional grunt tasks to run after file versions are bumped
                 beforeRelease: [], // optional grunt tasks to run after release version is bumped up but before release is packaged
