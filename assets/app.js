@@ -13,6 +13,10 @@ angular.module('siteApp', ['ngMaterial'], function ($interpolateProvider) {
         });
 
         $scope.getLanguageColor = function (repository) {
-                return '$github-color-' + repository.language.toLowerCase();
+                if (repository && repository.language) {
+                        return '$github-color-' + repository.language.toLowerCase();
+                }
+
+                return '';
         };
 }]);
