@@ -57,6 +57,10 @@ main {
     border-left: 1px solid gray;
 }
 
+.footer-links a:first-of-type {
+    border-left: none;
+}
+
 .repo-grid {
     display: flex;
     flex-direction: row;
