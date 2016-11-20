@@ -78,6 +78,10 @@ main {
 .repo-info {
     padding: 16px;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 .repo-card .md-subheader {
