@@ -17,6 +17,6 @@ angular.module('siteApp', ['ngMaterial'], function ($interpolateProvider) {
                         return 'github-color-' + repository.language.toLowerCase();
                 }
 
-                return 'repo-header-background';
+                return '';
         };
 }]);
