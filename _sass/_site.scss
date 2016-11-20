@@ -1,4 +1,5 @@
 :root {
+    --main-bg-color: white;
     --section-bg-color: white; //#F5F5F5;
     --section-color: #5badf0; //rgba(0, 0, 0, 0.87);
     --shadow-color: white; //rgba(100, 100, 100, 0.1);
@@ -64,6 +65,7 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: var(--main-bg-color);
 }
 
 .repo-card {
