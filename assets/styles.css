@@ -33,6 +33,7 @@ main {
 }
 
 .site-footer {
+    min-height: 48px;
     justify-content: flex-end;
     padding-right: var(--section-padding);
 }
