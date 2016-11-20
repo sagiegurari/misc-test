@@ -11,4 +11,8 @@ angular.module('siteApp', ['ngMaterial'], function ($interpolateProvider) {
 
                 return output;
         });
+
+        $scope.getLanguageColor = function (repository) {
+                return '$github-color-' + repository.language.toLowerCase();
+        };
 }]);
