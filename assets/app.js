@@ -3,6 +3,12 @@ angular.module('siteApp', ['ngMaterial'], function ($interpolateProvider) {
         $interpolateProvider.endSymbol(']]');
 }).controller('siteController', ['$scope', function ($scope) {
         $scope.repositories = window.githubInfo.sort(function (repo1, repo2) {
-                return repo1.stargazers_count - repo2.stargazers_count;
+                var output = repo2.stargazers_count - repo1.stargazers_count;
+
+                if (!output) {
+                        output = repo2.forks_count - repo1.forks_count;
+                }
+
+                return output;
         });
 }]);
