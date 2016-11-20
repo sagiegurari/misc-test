@@ -95,3 +95,7 @@ main {
     flex-wrap: nowrap;
     justify-content: space-between;
 }
+
+.repo-icon:before {
+    margin-right: 6px;
+}
