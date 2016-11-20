@@ -1,0 +1,83 @@
+:root {
+    --main-bg-color: pink;
+    --section-bg-color: #222222;
+    --section-color: white;
+    --section-padding: 20px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+main {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.site-header, .site-footer {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    color: var(--section-color);
+    background-color: var(--section-bg-color);
+}
+
+.site-header {
+    justify-content: flex-start;
+    padding-left: var(--section-padding);
+}
+
+.site-footer {
+    justify-content: flex-end;
+    padding-right: var(--section-padding);
+}
+
+.footer-links {
+    list-style-type: none;
+    margin: 0;
+}
+
+.footer-links a {
+    color: var(--section-color);
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.repo-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.repo-card {
+    flex-grow: 0;
+    display: inline-block;
+    width: calc(100% * (1/6) - 10px - 1px);
+}
+
+@media (max-width: 1100px) {
+    .repo-card {
+    width: calc(100% * (1/4) - 10px - 1px);
+    }
+}
+
+@media (max-width: 650px) {
+    .repo-card {
+        width: calc(100% * (1/2) - 10px - 1px);
+    }
+}
+
+.repo-info {
+    padding: 16px;
+}
+
+.repo-card .md-subheader {
+    background-color: #EDEDED;
+}
