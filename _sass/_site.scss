@@ -53,7 +53,7 @@ main {
         text-decoration: none;
         margin-left: 5px;
         padding-left: 7px;
-        border-left: 1px solid gray;
+        border-left: 1px solid var(--section-color);
     }
 
     a:first-of-type {
