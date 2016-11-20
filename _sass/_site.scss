@@ -1,8 +1,8 @@
 :root {
-    --section-bg-color: #F5F5F5;
-    --section-color: rgba(0, 0, 0, 0.87);
+    --section-bg-color: white; //#F5F5F5;
+    --section-color: #5badf0; //rgba(0, 0, 0, 0.87);
+    --shadow-color: white; //rgba(100, 100, 100, 0.1);
     --section-padding: 20px;
-    --shadow-color: rgba(100, 100, 100, 0.1);
 }
 
 body {
@@ -26,20 +26,17 @@ main {
     padding: 10px;
     color: var(--section-color);
     background-color: var(--section-bg-color);
+    min-height: 48px;
+    justify-content: flex-end;
+    padding-right: var(--section-padding);
 }
 
 .site-header {
-    justify-content: flex-start;
-    padding-left: var(--section-padding);
-    box-shadow: 0 0 4px 2px var(--shadow-color);
     margin-bottom: 4px;
 }
 
 .site-footer {
-    min-height: 48px;
-    justify-content: flex-end;
-    padding-right: var(--section-padding);
-    box-shadow: 0 -2px 4px 2px var(--shadow-color);
+    display: none; //for now, no footer
     margin-top: 4px;
 }
 
