@@ -103,6 +103,7 @@ main {
 
 .circle {
     display: inline-block;
+    margin-right: 10px;
     border-radius: 50%;
     width: 8px;
     height: 8px;
