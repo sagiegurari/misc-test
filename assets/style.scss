@@ -58,10 +58,10 @@ main {
         margin-left: 5px;
         padding-left: 7px;
         border-left: 1px solid gray;
+    }
 
-        &:first-of-type {
-            border-left: none;
-        }
+    a:first-of-type {
+        border-left: none;
     }
 }
 
