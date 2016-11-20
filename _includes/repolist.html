@@ -1,5 +1,5 @@
 <md-content class="repo-grid">
-    <md-card class="repo-card" ng-repeat="repository in repositories">
+    <md-card class="repo-card" ng-repeat="repository in repositories" ng-if="!repository.fork">
         <md-subheader class="md-primary">
             <a ng-href="[[repository.html_url]]" ng-bind="repository.name"></a>
         </md-subheader>
