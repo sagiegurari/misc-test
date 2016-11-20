@@ -1,9 +1,8 @@
 :root {
-    main-bg-color: pink;
-    section-bg-color: #F5F5F5;
-    section-color: rgba(0, 0, 0, 0.87);
-    section-padding: 20px;
-    shadow-color: rgba(0, 0, 0, 0.1);
+    -section-bg-color: #F5F5F5;
+    -section-color: rgba(0, 0, 0, 0.87);
+    -section-padding: 20px;
+    -shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -25,22 +24,22 @@ main {
     flex-direction: row;
     justify-content: center;
     padding: 10px;
-    color: var(section-color);
-    background-color: var(section-bg-color);
+    color: var(-section-color);
+    background-color: var(-section-bg-color);
 }
 
 .site-header {
     justify-content: flex-start;
-    padding-left: var(section-padding);
-    box-shadow: 0 0 4px 2px var(shadow-color);
+    padding-left: var(-section-padding);
+    box-shadow: 0 0 4px 2px var(-shadow-color);
     margin-bottom: 4px;
 }
 
 .site-footer {
     min-height: 48px;
     justify-content: flex-end;
-    padding-right: var(section-padding);
-    box-shadow: 0 -2px 4px 2px var(shadow-color);
+    padding-right: var(-section-padding);
+    box-shadow: 0 -2px 4px 2px var(-shadow-color);
     margin-top: 4px;
 }
 
@@ -49,7 +48,7 @@ main {
     margin: 0;
 
     a {
-        color: var(section-color);
+        color: var(-section-color);
         font-size: 16px;
         font-weight: bold;
         text-decoration: none;
