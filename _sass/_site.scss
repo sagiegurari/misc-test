@@ -35,29 +35,33 @@ main {
 
 .site-header {
     margin-bottom: 4px;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+
+        li {
+            display: inline-block;
+            margin-left: 5px;
+            padding-left: 7px;
+            border-left: 1px solid var(--section-color);
+
+            &:first-of-type {
+                border-left: none;
+            }
+        }
+
+        a {
+            color: var(--section-color);
+            font-size: 16px;
+            font-weight: normal;
+            text-decoration: none;
+        }
+    }
 }
 
 .site-footer {
     margin-top: 4px;
-}
-
-.footer-links {
-    list-style-type: none;
-    margin: 0;
-
-    a {
-        color: var(--section-color);
-        font-size: 16px;
-        font-weight: normal;
-        text-decoration: none;
-        margin-left: 5px;
-        padding-left: 7px;
-        border-left: 1px solid var(--section-color);
-    }
-
-    a:first-of-type {
-        border-left: none;
-    }
 }
 
 .repo-grid {
