@@ -19,7 +19,8 @@ main {
     justify-content: flex-start;
 }
 
-.link-icon {
+.link-icon,
+.toolbar-icon {
     font-size: 22px;
     margin-right: 12px;
 }
@@ -30,6 +31,13 @@ a.nav-link {
     font-weight: normal;
     text-decoration: none;
     padding-top: 2px;
+}
+
+.main-content {
+    md-toolbar.content-toolbar {
+        background-color: #409F62;
+        height: 64px;
+    }
 }
 
 .site-footer,
@@ -70,7 +78,7 @@ a.nav-link {
     margin-top: 4px;
 }
 
-nav {
+.sidenav-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -84,6 +92,15 @@ nav {
         flex-wrap: nowrap;
         justify-content: flex-start;
         flex-grow: 1;
+        transition: width 0.3s linear;
+        overflow-x: hidden;
+
+        .nav-link,
+        h3,
+        h4 {
+            white-space: nowrap;
+            overflow-x: hidden;
+        }
 
         md-toolbar {
             background: transparent;
@@ -120,6 +137,12 @@ nav {
             line-height: 20px;
         }
     }
+
+    &.closed {
+        .app-nav {
+            width: 0;
+        }
+    }
 }
 
 .repo-grid {
@@ -144,6 +167,11 @@ nav {
     .repo-card {
         width: calc(100% * (1/2) - 10px - 1px);
     }
+}
+
+.template-container {
+    overflow-y: scroll;
+    height: calc(100% - 64px);
 }
 
 .repo-info {

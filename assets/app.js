@@ -39,7 +39,23 @@ angular.module('siteApp', ['ngMaterial', 'ngRoute'], function ($interpolateProvi
     }, function (state) {
         $scope.state = state;
     });
-}]).directive('navLink', function () {
+}]).directive('mainContent', function () {
+    return {
+        restrict: 'C',
+        link: function (scope, element) {
+            scope.toggleSideNav = function () {
+                var $nav = element.find('.sidenav-container');
+                console.debug($nav.length )//TODO RMOVE
+
+                if ($nav.hasClass('closed')) {
+                    $nav.removeClass('closed');
+                } else {
+                    $nav.addClass('closed');
+                }
+            };
+        }
+    };
+}).directive('navLink', function () {
     return {
         restrict: 'C',
         scope: true,
