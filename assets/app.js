@@ -6,7 +6,7 @@ angular.module('siteApp', ['ngMaterial'], function ($interpolateProvider) {
 }).controller('siteController', ['$scope', function ($scope) {
     'use strict';
 
-    $scope.repositories = window.githubInfo.sort(function (repo1, repo2) {
+    $scope.repositories = (window.githubInfo || []).sort(function (repo1, repo2) {
         var output = repo2.stargazers_count - repo1.stargazers_count;
 
         if (!output) {
