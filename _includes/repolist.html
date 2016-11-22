@@ -4,7 +4,7 @@
             <span class="circle" ng-class="getLanguageColor(repository)"></span>
             <a ng-href="[[repository.html_url]]" ng-bind="repository.name"></a>
         </md-subheader>
-        <div class="repo-info">
+        <summary class="repo-info">
             <p ng-bind="repository.description"></p>
             <div class="row">
                 <div class="repo-counter-block">
@@ -16,6 +16,6 @@
                     <span class="repo-counter" ng-bind="repository.forks_count"></span>
                 </div>
             </div>
-        </div>
+        </summary>
     </md-card>
 </md-content>
