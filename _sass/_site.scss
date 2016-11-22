@@ -16,7 +16,20 @@ body {
 
 main {
     flex-grow: 1;
-    justify-content: center;
+    justify-content: flex-start;
+}
+
+.link-icon {
+    font-size: 22px;
+    margin-right: 12px;
+}
+
+a.nav-link {
+    color: black;
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    padding-top: 2px;
 }
 
 .site-footer,
@@ -50,18 +63,63 @@ main {
                 border-left: none;
             }
         }
-
-        a {
-            color: var(--section-color);
-            font-size: 16px;
-            font-weight: normal;
-            text-decoration: none;
-        }
     }
 }
 
 .site-footer {
     margin-top: 4px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+
+    .app-nav {
+        background-color: #409F62;
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.2) 35px, rgba(255,255,255,.2) 70px);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        flex-grow: 1;
+
+        md-toolbar {
+            background: transparent;
+            padding-left: 10px;
+            padding-top: 10px;
+            flex-grow: 0;
+
+            .md-avatar {
+                flex: none;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                margin-top: 8px;
+                margin-bottom: 8px;
+                margin-right: 16px;
+            }
+
+            .author {
+                font-size: 18px;
+                margin-bottom: 3px;
+            }
+
+            .mail {
+                font-size: 14px;
+                margin-top: 0;
+            }
+        }
+
+        md-content {
+            flex-grow: 1;
+        }
+
+        md-list-item {
+            line-height: 20px;
+        }
+    }
 }
 
 .repo-grid {
