@@ -13,6 +13,8 @@
   },
   "scripts": {
     "release": "grunt default",
+    "nodehome": "cross-env HOME=$HOME2 -e \"console.log(process.env.HOME)\"",
+    "scripthome": "echo \"$HOME\"",
     "createtag": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git tag",
     "pushtag": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git push origin",
     "testpostpublish1": "echo \"pushing tag: ${npm_package_version}\" && git tag ${npm_package_version} && git push origin ${npm_package_version}",
