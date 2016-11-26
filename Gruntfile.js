@@ -21,7 +21,7 @@ module.exports = function (grunt) {
                 tagMessage: '<%= version %>',
                 github: {
                     repo: repo,
-                    accessTokenVar: 'GTOKEN'
+                    accessTokenVar: 'GHTOKEN'
                 }
             }
         }
