@@ -1,0 +1,20 @@
+{
+  "name": "misc-test",
+  "version": "1.0.5",
+  "private": true,
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-release": "^0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagiegurari/misc-test.git"
+  },
+  "scripts": {
+    "release": "grunt default",
+    "testpostpublish": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git tag  && git push --follow-tags"
+  },
+  "author": "Sagie Gur-Ari",
+  "license": "MIT"
+}
