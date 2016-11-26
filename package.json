@@ -5,6 +5,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-cli": "^1.2.0",
+    "grunt-github-releaser": "^0.1.18",
     "grunt-release": "^0.14.0"
   },
   "repository": {

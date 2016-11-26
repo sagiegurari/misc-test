@@ -2,9 +2,21 @@ module.exports = function (grunt) {
     var url = require('./package.json').repository.url;
     var prefix = 'github.com/';
     var repo = url.substring(url.indexOf(prefix) + prefix.length, url.lastIndexOf('.git'));
+    var userName = repo.split('/')[0];
     console.log(repo);
 
     grunt.initConfig({
+        'github-release': {
+            full: {
+                options: {
+                    repository: repo,
+                    auth: {
+                        user: userName,
+                        password: process.env.GHTOKEN
+                    }
+                }
+            }
+        },
         release: {
             options: {
                 bump: false,
@@ -28,7 +40,8 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-release');
+    grunt.loadNpmTasks('grunt-github-releaser');
 
-    grunt.registerTask('default', ['release']);
+    grunt.registerTask('default', ['github-release']);
 
 };
