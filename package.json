@@ -1,6 +1,6 @@
 {
   "name": "misc-test",
-  "version": "1.0.5",
+  "version": "1.0.10",
   "private": true,
   "devDependencies": {
     "grunt": "^1.0.1",
@@ -13,7 +13,10 @@
   },
   "scripts": {
     "release": "grunt default",
-    "testpostpublish": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git tag  && git push --follow-tags"
+    "createtag": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git tag",
+    "pushtag": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git push origin",
+    "testpostpublish1": "echo \"pushing tag: ${npm_package_version}\" && git tag ${npm_package_version} && git push origin ${npm_package_version}",
+    "testpostpublish2": "node -e \"process.stdout.write(require('./package.json').version);\" | xargs git tag && node -e \"process.stdout.write(require('./package.json').version);\" | xargs git push origin"
   },
   "author": "Sagie Gur-Ari",
   "license": "MIT"
