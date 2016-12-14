@@ -18,7 +18,13 @@ npm --loglevel warn --production install
 
 npm --loglevel warn --production install chai
 
-npm --loglevel warn --production --unsafe-perm install oracledb
+cd ./node_modules
+mkdir ./node-oracledb
+cd ./node-oracledb
+wget https://github.com/oracle/node-oracledb/archive/master.zip
+unzip -q node-oracledb-master.zip
+npm --loglevel warn --production --unsafe-perm install
+cd ../../
 
 export TEST_ORACLE_CONNECTION_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${DB_PORT_1521_TCP_ADDR})(PORT=${DB_PORT_1521_TCP_PORT}))(CONNECT_DATA=(SID=xe)))"
 
