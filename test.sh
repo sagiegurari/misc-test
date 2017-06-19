@@ -25,6 +25,8 @@ wget https://github.com/oracle/node-oracledb/archive/${ORA_BRANCH}.zip
 unzip -q ${ORA_BRANCH}.zip
 mv ./node-oracledb-${ORA_BRANCH} ./oracledb
 cd ./oracledb
+git submodule init
+git submodule update
 npm --loglevel warn --production --unsafe-perm install
 cd ../../
 
