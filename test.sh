@@ -21,6 +21,9 @@ npm --loglevel warn --production install chai
 cd ./node_modules
 
 ORA_BRANCH="dev-2.0"
+mkdir -p /root/.ssh/
+touch /root/.ssh/known_hosts
+chmod 777 /root/.ssh/known_hosts
 ssh-keyscan github.com >> ~/.ssh/known_hosts
 mkdir -p ./oracledb
 cd ./oracledb
