@@ -21,10 +21,10 @@ npm --loglevel warn --production install chai
 cd ./node_modules
 
 ORA_BRANCH="dev-2.0"
-wget https://github.com/oracle/node-oracledb/archive/${ORA_BRANCH}.zip
-unzip -q ${ORA_BRANCH}.zip
-mv ./node-oracledb-${ORA_BRANCH} ./oracledb
+mkdir -p ./oracledb
 cd ./oracledb
+git clone git@github.com:oracle/node-oracledb.git
+git checkout ${ORA_BRANCH}
 git submodule init
 git submodule update
 npm --loglevel warn --production --unsafe-perm install
