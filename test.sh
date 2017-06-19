@@ -19,9 +19,11 @@ npm --loglevel warn --production install
 npm --loglevel warn --production install chai
 
 cd ./node_modules
-wget https://github.com/oracle/node-oracledb/archive/master.zip
-unzip -q master.zip
-mv ./node-oracledb-master ./oracledb
+
+ORA_BRANCH="dev-2.0"
+wget https://github.com/oracle/node-oracledb/archive/${ORA_BRANCH}.zip
+unzip -q ${ORA_BRANCH}.zip
+mv ./node-oracledb-${ORA_BRANCH} ./oracledb
 cd ./oracledb
 npm --loglevel warn --production --unsafe-perm install
 cd ../../
