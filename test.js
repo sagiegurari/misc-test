@@ -946,8 +946,7 @@ integrationHelper(function (oracledb, connAttrs, initDB, end) {
                         });
                     });
 
-                    it('update - LOB data', function (done) {
-                        return done();
+                    it.only('update - LOB data', function (done) {
                         var table = 'TEST_ORA_UPDT3';
 
                         var longClobText = 'this is a really long line of test data\n';
