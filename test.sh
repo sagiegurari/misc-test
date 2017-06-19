@@ -41,5 +41,8 @@ sleep 30
 
 export TEST_STABILITY="true"
 
+cp /test/test.js ./test/spec/test.js
+mocha ./test/spec/test.js
+
 mocha ./test/spec/integration-spec.js
 mocha ./test/spec/stability-spec.js
