@@ -21,18 +21,14 @@ npm --loglevel warn --production install chai
 cd ./node_modules
 
 ORA_BRANCH="dev-2.0"
-mkdir -p /root/.ssh/
-touch /root/.ssh/known_hosts
-chmod 777 /root/.ssh/known_hosts
-ssh-keyscan github.com >> ~/.ssh/known_hosts
-mkdir -p ./oracledb
-cd ./oracledb
-git clone git@github.com:oracle/node-oracledb.git
-git checkout ${ORA_BRANCH}
-git submodule init
-git submodule update
-npm --loglevel warn --production --unsafe-perm install
-cd ../../
+cd ..
+npm install oracle/node-oracledb.git#${ORA_BRANCH} --loglevel warn --production --unsafe-perm install
+#wget https://github.com/oracle/node-oracledb/archive/${ORA_BRANCH}.zip
+#unzip -q ${ORA_BRANCH}.zip
+#mv ./node-oracledb-${ORA_BRANCH} ./oracledb
+#cd ./oracledb
+#npm --loglevel warn --production --unsafe-perm install
+#cd ../../
 
 export TEST_ORACLE_CONNECTION_STRING="(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=${DB_PORT_1521_TCP_ADDR})(PORT=${DB_PORT_1521_TCP_PORT}))(CONNECT_DATA=(SID=xe)))"
 
