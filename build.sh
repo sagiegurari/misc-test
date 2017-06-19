@@ -7,11 +7,10 @@ echo "parent host: ${PARENT_HOST}"
 
 #docker stop $(docker ps -a -q)
 
-#docker pull wnameless/oracle-xe-11g
-#docker run --name db -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
-docker pull sath89/oracle-12c
-docker run --name db -d -p 8080:8080 -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true sath89/oracle-12c
-
+docker pull wnameless/oracle-xe-11g
+docker run --name db -d -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g
+#docker pull sath89/oracle-12c
+#docker run --name db -d -p 8080:8080 -p 1521:1521 -e ORACLE_ALLOW_REMOTE=true sath89/oracle-12c
 
 #docker pull alexeiled/docker-oracle-xe-11g
 #docker run -d -p 35353:1521 alexeiled/docker-oracle-xe-11g
