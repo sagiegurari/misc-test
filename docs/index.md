@@ -1,5 +1,3 @@
 ---
 ---
-
-test
-
+{% include main.md %}
