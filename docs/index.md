@@ -1,3 +1,3 @@
 ---
 ---
-{% include main.md %}
+{% include main.html %}
