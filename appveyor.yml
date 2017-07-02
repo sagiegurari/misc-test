@@ -16,5 +16,4 @@ build: false
 test_script:
   - echo. 2>../test.txt
   - dir ..
-  - cargo build --verbose
-  - cargo test --verbose
+  - cargo run

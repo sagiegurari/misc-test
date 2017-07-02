@@ -12,5 +12,4 @@ script:
   - cd ..
   - ls *.txt
   - cd -
-  - cargo build --verbose
-  - cargo test --verbose
+  - cargo run
