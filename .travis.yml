@@ -1,4 +1,16 @@
-language: ruby
-sudo: false
+language: rust
+sudo: true
+dist: trusty
+group: edge
+rust:
+  - nightly
+env:
+  global:
+    - RUST_BACKTRACE=1
 script:
-  - echo "test done"
+  - touch ../test.txt
+  - cd ..
+  - ls *.txt
+  - cd -
+  - cargo build --verbose
+  - cargo test --verbose
