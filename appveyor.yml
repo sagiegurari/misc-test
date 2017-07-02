@@ -15,9 +15,6 @@ build: false
 
 test_script:
   - echo. 2>../test.txt
-  - PUSHD %1
-  - cd ..
-  - dir *.txt
-  - POPD
+  - dir ../*.txt
   - cargo build --verbose
   - cargo test --verbose
