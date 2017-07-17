@@ -3,4 +3,6 @@ node_modules
 npm-debug.log
 temp
 /docs/_site
-/target
+target
+.c9
+*.lock

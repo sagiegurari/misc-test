@@ -12,4 +12,3 @@ script:
   - cd ..
   - ls *.txt
   - cd -
-  - cargo run
