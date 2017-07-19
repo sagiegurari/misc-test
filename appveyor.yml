@@ -14,6 +14,5 @@ install:
 build: false
 
 test_script:
-  - echo. 2>../test.txt
-  - dir ..
-  - cargo run
+  - cargo install --debug cargo-make
+  - cargo make workspace-ci-flow --no-workspace
