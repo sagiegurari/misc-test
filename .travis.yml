@@ -10,4 +10,4 @@ env:
 script:
   - wget -O ~/.cargo/bin/cargo-make https://bintray.com/sagiegurari/cargo-make/download_file?file_path=cargo-make
   - chmod 777 ~/.cargo/bin/cargo-make
-  - cargo-make make ci
+  - cargo-make make ci-flow
