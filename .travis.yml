@@ -8,7 +8,5 @@ env:
   global:
     - RUST_BACKTRACE=1
 script:
-  - touch ../test.txt
-  - cd ..
-  - ls *.txt
-  - cd -
+  - wget -O ~/.cargo/bin/cargo-make https://bintray.com/sagiegurari/cargo-make/download_file?file_path=cargo-make
+  - cargo make ci
