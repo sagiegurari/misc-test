@@ -22,7 +22,7 @@ cd ./node_modules
 
 ORA_BRANCH="dev-2.0"
 cd ..
-npm install oracle/node-oracledb.git#${ORA_BRANCH} --loglevel warn --production --unsafe-perm install
+npm install oracledb#oracle/node-oracledb.git#${ORA_BRANCH} --loglevel warn --production --unsafe-perm install
 #wget https://github.com/oracle/node-oracledb/archive/${ORA_BRANCH}.zip
 #unzip -q ${ORA_BRANCH}.zip
 #mv ./node-oracledb-${ORA_BRANCH} ./oracledb
