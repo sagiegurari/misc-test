@@ -342,19 +342,21 @@
     webNotification.showNotification = function () {
         //convert to array to enable modifications
         var argumentsArray = Array.prototype.slice.call(arguments, 0);
-
+printErr('args');
         if ((argumentsArray.length >= 1) && (argumentsArray.length <= 3)) {
             var data = parseInput(argumentsArray);
-
+printErr('data');
             //get values
             var callback = data.callback;
             var title = data.title;
             var options = data.options;
-
+printErr('isEnabled:'+isEnabled());
             if (isEnabled()) {
                 createAndDisplayNotification(title, options, callback);
             } else if (webNotification.allowRequest) {
+                printErr('NotificationAPI.requestPermission:'+NotificationAPI.requestPermission);
                 NotificationAPI.requestPermission(function onRequestDone() {
+                printErr('NotificationAPI.requestPermissiond:'+arguments);
                     if (isEnabled()) {
                         createAndDisplayNotification(title, options, callback);
                     } else {
