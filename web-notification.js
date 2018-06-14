@@ -216,7 +216,10 @@
         } else {
             printErr(title);
             printErr(options);
-            onNotification(new NotificationAPI(title, options));
+            const no = new NotificationAPI(title, options);
+            printErr(no);
+            no.onerror=(e)=>{printErr('err',e);};
+            onNotification(no);
         }
     };
 
