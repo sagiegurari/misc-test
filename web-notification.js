@@ -216,10 +216,15 @@
         } else {
             printErr(title);
             printErr(options);
-            const no = new NotificationAPI(title, options);
+            try {
+                const no = new NotificationAPI(title, options);
             printErr(no);
             no.onerror=(e)=>{printErr('err',e);};
             onNotification(no);
+            }catch(ee) {
+                printErr('ee',ee);
+                callback(ee);
+            }
         }
     };
 
