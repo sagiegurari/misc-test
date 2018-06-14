@@ -1,5 +1,8 @@
-_site
-.jekyll-metadata
+.idea
 node_modules
-.sass-cache
-_data/test.json
+npm-debug.log
+temp
+/docs/_site
+target
+.c9
+*.lock
