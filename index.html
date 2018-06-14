@@ -2,7 +2,7 @@
     <head>
         <script>
             function printErr(text = '', error = {}) {
-                const ta = document.getElementById('err');
+                const ta = document.getElementById('ta');
                 ta.value = [ta.value || '', '-----------------', text || 'no text', error.message || 'no message', error.stack || 'no stack'].join('\n');
             }
         </script>
@@ -13,6 +13,6 @@
     <body>
         Up and Running.<br>
         <button id="doIt" onclick="showNotification2();">Run</button>
-        <textarea col="10" rows="10" id="err">temp</textarea>
+        <textarea col="10" rows="10" id="ta">temp</textarea>
     </body>
 </html>
