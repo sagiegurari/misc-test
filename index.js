@@ -41,6 +41,8 @@ function showNotification2() {
             window.alert('Unable to show notification: ' + error.message);
         }
         else {
+            printErr('yay', error);
+            printErr('hide', hide);
             console.log('yay');
             hide();
         }
