@@ -52,15 +52,17 @@
     };
 
     if ((typeof define === 'function') && define.amd) {
-    printErr('define');
+        printErr('define');
         define(function defineLib() {
             return webNotification;
         });
-    } else if ((typeof module === 'object') && module.exports) {
-    printErr('module');
+    }
+    else if ((typeof module === 'object') && module.exports) {
+        printErr('module');
         module.exports = webNotification;
-    } else {
-    printErr('global');
+    }
+    else {
+        printErr('global');
         global.webNotification = webNotification;
     }
 
@@ -102,9 +104,9 @@
          * @returns {Boolean} True if permission is granted, else false
          */
         get: function getPermission() {
-    printErr('getPermission');
+            printErr('getPermission');
             var permission = NotificationAPI.permission;
-    printErr('permission: '+permission);
+            printErr('permission: ' + permission);
 
             /**
              * True if permission is granted, else false.
@@ -208,23 +210,26 @@
                 }).then(function notificationsFetched(notifications) {
                     if (notifications && notifications.length) {
                         onNotification(notifications[0]);
-                    } else {
+                    }
+                    else {
                         callback(new Error('Unable to find notification.'));
                     }
                 }).catch(callback);
             }).catch(callback);
-        } else {
+        }
+        else {
             printErr(title);
             printErr(options);
             try {
                 printErr('show...');
                 const no = new NotificationAPI(title, options);
                 printErr('showed...');
-            printErr(no);
-            no.onerror=(e)=>{printErr('err',e);};
-            onNotification(no);
-            }catch(ee) {
-                printErr('ee',ee);
+                printErr(no);
+                no.onerror = (e) => { printErr('err', e); };
+                onNotification(no);
+            }
+            catch (ee) {
+                printErr('ee', ee);
                 callback(ee);
             }
         }
@@ -252,12 +257,14 @@
         if (argumentsArray.length === 2) {
             title = argumentsArray[0];
             options = argumentsArray[1];
-        } else if (argumentsArray.length === 1) {
+        }
+        else if (argumentsArray.length === 1) {
             var value = argumentsArray.pop();
             if (typeof value === 'string') {
                 title = value;
                 options = {};
-            } else {
+            }
+            else {
                 title = '';
                 options = value;
             }
@@ -352,28 +359,31 @@
     webNotification.showNotification = function () {
         //convert to array to enable modifications
         var argumentsArray = Array.prototype.slice.call(arguments, 0);
-printErr('args');
+        printErr('args');
         if ((argumentsArray.length >= 1) && (argumentsArray.length <= 3)) {
             var data = parseInput(argumentsArray);
-printErr('data');
+            printErr('data');
             //get values
             var callback = data.callback;
             var title = data.title;
             var options = data.options;
-printErr('isEnabled:'+isEnabled());
+            printErr('isEnabled:' + isEnabled());
             if (isEnabled()) {
                 createAndDisplayNotification(title, options, callback);
-            } else if (webNotification.allowRequest) {
-                printErr('NotificationAPI.requestPermission:'+NotificationAPI.requestPermission);
+            }
+            else if (webNotification.allowRequest) {
+                printErr('NotificationAPI.requestPermission:' + NotificationAPI.requestPermission);
                 NotificationAPI.requestPermission(function onRequestDone() {
-                printErr('NotificationAPI.requestPermissiond:'+arguments);
+                    printErr('NotificationAPI.requestPermissiond:' + arguments);
                     if (isEnabled()) {
                         createAndDisplayNotification(title, options, callback);
-                    } else {
+                    }
+                    else {
                         callback(new Error('Notifications are not enabled.'), null);
                     }
                 });
-            } else {
+            }
+            else {
                 callback(new Error('Notifications are not enabled.'), null);
             }
         }
