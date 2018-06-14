@@ -37,6 +37,7 @@ function showNotification2() {
         autoClose: 10000
     }, function onShow(error, hide) {
         if (error) {
+            printErr('onshow', error);
             window.alert('Unable to show notification: ' + error.message);
         }
         else {

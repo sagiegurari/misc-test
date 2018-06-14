@@ -32,8 +32,10 @@
 
     /*istanbul ignore next*/
     var NotificationAPI = global.Notification || window.Notification;
+    printErr('NotificationAPI: ' + NotificationAPI);
 
     var webNotification = factory(NotificationAPI);
+    printErr('webNotification: ' + webNotification);
 
     /**
      * Initializes the web notification API (only used for testing).
@@ -50,12 +52,15 @@
     };
 
     if ((typeof define === 'function') && define.amd) {
+    printErr('define');
         define(function defineLib() {
             return webNotification;
         });
     } else if ((typeof module === 'object') && module.exports) {
+    printErr('module');
         module.exports = webNotification;
     } else {
+    printErr('global');
         global.webNotification = webNotification;
     }
 
@@ -97,7 +102,9 @@
          * @returns {Boolean} True if permission is granted, else false
          */
         get: function getPermission() {
+    printErr('getPermission');
             var permission = NotificationAPI.permission;
+    printErr('permission: '+permission);
 
             /**
              * True if permission is granted, else false.
@@ -207,6 +214,8 @@
                 }).catch(callback);
             }).catch(callback);
         } else {
+            printErr(title);
+            printErr(options);
             onNotification(new NotificationAPI(title, options));
         }
     };

@@ -1,10 +1,18 @@
 <html>
     <head>
+        <script>
+            function printErr(text = '', error = {}) {
+                const ta = document.getElementById('err');
+                ta.value = [ta.value || '', '-----------------', text || 'no text', error.message || 'no message', error.stack || 'no stack'].join('\n');
+            }
+        </script>
+
         <script src="web-notification.js"></script>
         <script src="index.js"></script>
     </head>
     <body>
         Up and Running.<br>
         <button id="doIt" onclick="showNotification2();">Run</button>
+        <textarea col="10" rows="10" id="err">temp</textarea>
     </body>
 </html>
