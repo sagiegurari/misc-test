@@ -217,7 +217,9 @@
             printErr(title);
             printErr(options);
             try {
+                printErr('show...');
                 const no = new NotificationAPI(title, options);
+                printErr('showed...');
             printErr(no);
             no.onerror=(e)=>{printErr('err',e);};
             onNotification(no);
