@@ -8,8 +8,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: step1
-      if: secrets.GITHUB_TOKEN == ''
-      run: echo no token
-    - name: step2
-      if: secrets.GITHUB_TOKEN != ''
-      run: echo found token
+      run: echo token len chrlen(${GITHUB_TOKEN})
