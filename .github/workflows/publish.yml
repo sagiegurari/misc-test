@@ -12,6 +12,10 @@ jobs:
     - name: Build
       run: |
         touch ./test123.zip
+    - name: check build
+      run: |
+        ls -l
+        tree
     - name: Upload Binaries
       uses: svenstaro/upload-release-action@v1-release
       with:
