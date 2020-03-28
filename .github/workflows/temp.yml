@@ -8,4 +8,4 @@ jobs:
     steps:
     - name: check token
       run: |
-        echo echo token len chrlen(${GITHUB_TOKEN})
+        echo echo token len expr length "${GITHUB_TOKEN}"
