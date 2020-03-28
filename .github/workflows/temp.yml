@@ -1,11 +1,11 @@
 name: Temp Tests
 on: [push]
+
 jobs:
-  ci:
-    name: Continuous Integration
-    runs-on: [ubuntu-latest, windows-latest, macOS-latest]
+  temp:
+    name: Temp
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: step1
-      run: echo token len chrlen(${GITHUB_TOKEN})
+    - name: check token
+      run: |
+        echo echo token len chrlen(${GITHUB_TOKEN})
