@@ -1,4 +1,13 @@
 
-[tasks.test-publish]
-env = { "CARGO_MAKE_PROJECT_VERSION" = "1.6.6" }
-run_task = "github-publish-custom-name"
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = "true"
+
+[tasks.all_members]
+workspace = false
+run_task = { name = "member_task", fork = true }
+
+[tasks.one_member]
+workspace = false
+env = { "CARGO_MAKE_WORKSPACE_INCLUDE_MEMBERS" = "src/lib/one" }
+run_task = { name = "member_one_task", fork = true }
+
