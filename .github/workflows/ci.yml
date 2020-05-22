@@ -24,9 +24,9 @@ jobs:
       with:
         command: install
         args: --debug cargo-make
-    - name: Run CI
+    - name: Run
       uses: actions-rs/cargo@v1
       with:
         command: make
-        args: ci-flow
+        args: one_member
 
