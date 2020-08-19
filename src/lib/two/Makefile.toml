@@ -1,5 +1,0 @@
-
-[tasks.member_task]
-command = "echo"
-args = ["two"]
-

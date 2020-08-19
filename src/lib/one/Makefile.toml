@@ -1,9 +1,0 @@
-
-[tasks.member_task]
-command = "echo"
-args = ["one"]
-
-[tasks.member_one_task]
-command = "echo"
-args = ["member one only task"]
-

@@ -1,5 +1,4 @@
-[workspace]
-members = [
-    "src/lib/one",
-    "src/lib/two"
-]
+[package]
+name = "test"
+version = "0.0.1"
+
