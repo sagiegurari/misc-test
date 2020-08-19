@@ -12,7 +12,7 @@ fn main() {
 
     some_type = match some_type {
         SomeType::A => SomeType::B,
-        _ -> SomeType::C,
+        _ => SomeType::C,
     };
 
     println!("updated to: {:#?}", &some_type);
