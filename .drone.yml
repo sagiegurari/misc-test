@@ -2,7 +2,7 @@ kind: pipeline
 name: release
 
 platform:
-  arch: arm64
+  arch: arm
 
 steps:
 - name: test
