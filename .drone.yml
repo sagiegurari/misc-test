@@ -1,5 +1,5 @@
 pipeline:
   ci-flow:
-    image: arm32v7/rust:latest
+    image: arm32v7/rust
     commands:
     - cargo run --bin cargo-make -- make
