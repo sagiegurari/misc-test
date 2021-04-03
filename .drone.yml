@@ -1,3 +1,7 @@
+platform:
+  os: linux
+  arch: arm
+
 pipeline:
   ci-flow:
     image: arm32v7/rust
