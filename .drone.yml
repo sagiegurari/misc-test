@@ -1,10 +1,14 @@
+kind: pipeline
+type: docker
+name: release
+
 platform:
   os: linux
   arch: arm
 
-pipeline:
-  ci-flow:
-    image: arm32v7/rust
-    commands:
-    - cargo install cargo-make
-    - cargo make
+steps:
+- name: release
+  image: arm32v7/rust
+  commands:
+  - cargo install cargo-make
+  - cargo make
