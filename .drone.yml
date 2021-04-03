@@ -1,13 +1,11 @@
 kind: pipeline
-name: release
+name: test-on-amd64
 
 platform:
-  os: linux
-  arch: arm
+  arch: amd64
 
 steps:
-- name: release
-  image: arm32v7/rust
+- name: test
+  image: rust:1.30
   commands:
-  - cargo install cargo-make
-  - cargo make
+  - cargo build
