@@ -6,6 +6,7 @@ platform:
 
 steps:
 - name: test
-  image: rust:1.30
+  image: rust
   commands:
-  - cargo build
+  - cargo install cargo-make
+  - cargo make
