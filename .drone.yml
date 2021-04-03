@@ -8,7 +8,7 @@ steps:
 - name: test
   image: rust
   commands:
-  - sudo apt-get install musl-tools
+  - apt-get install -y musl-tools
   - cargo install cargo-make
   - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-musl
   - tree
