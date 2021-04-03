@@ -1,0 +1,6 @@
+pipeline:
+  ci-flow:
+    image: rust:1.38-slim
+    commands:
+    - cargo install --debug cargo-make
+    - cargo make ci-flow
