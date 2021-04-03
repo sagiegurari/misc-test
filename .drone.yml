@@ -1,8 +1,8 @@
 kind: pipeline
-name: test-on-amd64
+name: release
 
 platform:
-  arch: amd64
+  arch: arm64
 
 steps:
 - name: test
