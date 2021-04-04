@@ -28,7 +28,7 @@ category = "CI"
 dependencies = ["setup-sudo-env"]
 condition = { platforms = ["linux"] }
 install_script = '''
-if [ "${CARGO_MAKE_SUDO_ENABLED}" == "false" ]; then
+if [ "${y}" == "false" ]; then
     echo "Skipping zip installation as 'sudo' is disabled."
     exit 0
 fi
