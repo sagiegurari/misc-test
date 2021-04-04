@@ -2,3 +2,73 @@
 [tasks.test-publish]
 env = { "CARGO_MAKE_PROJECT_VERSION" = "1.6.6" }
 run_task = "github-publish-custom-name"
+
+
+
+[tasks.zip-release-ci-flow]
+description = "Compiles the binary in release mode and zips it up"
+category = "CI"
+condition = { env_set = ["CARGO_MAKE_RELEASE_FLOW_TARGET"], env_true = ["CARGO_MAKE_CI"] }
+dependencies = [
+  "clean",
+  "setup-release-build-env",
+  "build-release-for-target",
+  "zip-release-binary-for-target",
+]
+
+[tasks.setup-release-build-env]
+description = "Sets up any non-rust dependencies in the build environment"
+category = "CI"
+linux_alias = "setup-musl"
+
+[tasks.setup-musl]
+description = "Sets up a musl build environment"
+category = "CI"
+condition = { env_set = [
+  "CARGO_MAKE_RELEASE_FLOW_TARGET",
+  "CARGO_MAKE_OPENSSL_VERSION",
+  "CARGO_MAKE_OPENSSL_DOWNLOAD_URL",
+], env_true = ["CARGO_MAKE_CI"], platforms = ["linux"] }
+env = { "OPENSSL_DIR" = "${HOME}/openssl-musl" }
+script = '''
+rustup target add "$CARGO_MAKE_RELEASE_FLOW_TARGET"
+curl ${CARGO_MAKE_OPENSSL_DOWNLOAD_URL} | tar xzf -
+cd openssl-${CARGO_MAKE_OPENSSL_VERSION}
+# todo changed from 86 to arm
+CC=musl-gcc ./Configure --prefix="$OPENSSL_DIR" no-dso no-ssl2 no-ssl3 linux-arm -fPIC
+make -j"$(nproc)"
+make install
+'''
+
+[tasks.build-release-for-target]
+description = "Makes a release build for a given target"
+category = "Build"
+condition = { env_set = ["CARGO_MAKE_RELEASE_FLOW_TARGET"], env_true = ["CARGO_MAKE_CI"] }
+install_crate = false
+command = "cargo"
+args = [
+  "build",
+  "--release",
+  "--all-features",
+  "--target",
+  "${CARGO_MAKE_RELEASE_FLOW_TARGET}",
+]
+
+[tasks.zip-release-binary-for-target]
+description = "Zips up the release binary, README, and license(s)"
+category = "Publish"
+condition = { env_set = [
+  "CARGO_MAKE_RELEASE_FLOW_TARGET",
+  "CARGO_MAKE_PROJECT_NAME",
+  "CARGO_MAKE_PROJECT_VERSION",
+  "CARGO_MAKE_BINARY_EXECUTABLE_NAME",
+], env_true = ["CARGO_MAKE_CI"] }
+env = { "OUTPUT_NAME" = "${CARGO_MAKE_PROJECT_NAME}-v${CARGO_MAKE_PROJECT_VERSION}-${CARGO_MAKE_RELEASE_FLOW_TARGET}" }
+script_runner = "@shell"
+script = '''
+mkdir ${OUTPUT_NAME}
+cp target/$CARGO_MAKE_RELEASE_FLOW_TARGET/release/${CARGO_MAKE_BINARY_EXECUTABLE_NAME} ${OUTPUT_NAME}/
+cp README.md LICENSE* ${OUTPUT_NAME}/
+zip -r ${OUTPUT_NAME}.zip ${OUTPUT_NAME}
+'''
+
