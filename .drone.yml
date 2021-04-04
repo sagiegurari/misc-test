@@ -14,3 +14,9 @@ steps:
   - cargo make print-env-flow
   - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-gnueabihf
   - ls -lsa
+  - mkdir -p ./temp123
+  - cd ./temp123
+  - cp ../misc-test-v0.1.0-arm-unknown-linux-gnueabihf.zip .
+  - unzip ./misc-test-v0.1.0-arm-unknown-linux-gnueabihf.zip
+  - cd misc-test-v0.1.0-arm-unknown-linux-gnueabihf
+  - ./misc-test
