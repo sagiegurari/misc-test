@@ -33,7 +33,7 @@ if [ "${CARGO_MAKE_SUDO_ENABLED}" == "false" ]; then
     exit 0
 fi
 
-which zip || (sudo apt-get update && sudo apt-get install -y zip)
+which zip || (apt-get update && apt-get install -y zip)
 '''
 
 [tasks.setup-musl]
