@@ -17,10 +17,10 @@ dependencies = [
 ]
 
 [tasks.setup-release-build-env]
+clear = true # todo not needed
 description = "Sets up any non-rust dependencies in the build environment"
 category = "CI"
 dependencies = ["install-zip", "setup-musl"]
-linux_alias = "setup-musl"
 
 [tasks.install-zip]
 description = "Sets up zip executable for build environment"
