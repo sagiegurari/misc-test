@@ -33,18 +33,7 @@ if [ "${CARGO_MAKE_SUDO_ENABLED}" == "false" ]; then
     exit 0
 fi
 
-function install_zip {
-  if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
-      sudo apt-get update || true
-      sudo apt-get install -y zip
-
-      exit 0
-  fi
-
-  exit 1
-}
-
-which zip || install_zip
+which zip || sudo apt-get update && sudo apt-get install -y zip
 '''
 
 [tasks.setup-musl]
