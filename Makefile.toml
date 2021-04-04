@@ -4,86 +4,61 @@ env = { "CARGO_MAKE_PROJECT_VERSION" = "1.6.6" }
 run_task = "github-publish-custom-name"
 
 
-
-[tasks.zip-release-ci-flow]
-description = "Compiles the binary in release mode and zips it up"
-category = "CI"
-condition = { env_set = ["CARGO_MAKE_RELEASE_FLOW_TARGET"], env_true = ["CARGO_MAKE_CI"] }
-dependencies = [
-  "clean",
-  "setup-release-build-env",
-  "build-release-for-target",
-  "zip-release-binary-for-target",
-]
-
 [tasks.setup-release-build-env]
-clear = true # todo not needed
 description = "Sets up any non-rust dependencies in the build environment"
 category = "CI"
 dependencies = ["install-zip", "setup-musl"]
+clear = true #no need
+
 
 [tasks.install-zip]
-description = "Sets up zip executable for build environment"
-category = "CI"
-dependencies = ["setup-sudo-env"]
+description = "Installs zip executable"
+category = "Tools"
 condition = { platforms = ["linux"] }
+dependencies = ["setup-sudo-env"]
 install_script = '''
-if [ "${y}" == "false" ]; then
-    echo "Skipping zip installation as 'sudo' is disabled."
-    exit 0
-fi
-
-which zip || (apt-get update && apt-get install -y zip)
+which zip || (${CARGO_MAKE_SUDO_COMMAND} apt-get update && ${CARGO_MAKE_SUDO_COMMAND} apt-get install -y zip)
 '''
 
 [tasks.setup-musl]
 description = "Sets up a musl build environment"
 category = "CI"
 condition = { env_set = [
-  "CARGO_MAKE_RELEASE_FLOW_TARGET",
-  "CARGO_MAKE_OPENSSL_VERSION",
-  "CARGO_MAKE_OPENSSL_DOWNLOAD_URL",
+   "CARGO_MAKE_RELEASE_FLOW_TARGET",
+ "CARGO_MAKE_OPENSSL_VERSION",
+ "CARGO_MAKE_OPENSSL_DOWNLOAD_URL",
 ], env_true = ["CARGO_MAKE_CI"], platforms = ["linux"] }
-env = { "OPENSSL_DIR" = "${HOME}/openssl-musl" }
+env.OPENSSL_DIR = "${HOME}/openssl-musl"
+env.OPENSSL_PLATFORM = { source = "${CARGO_MAKE_RUST_TARGET_ARCH}", default_value = "x86_64", mapping = { "arm" = "armv4" } }
 script = '''
 rustup target add "$CARGO_MAKE_RELEASE_FLOW_TARGET"
 curl ${CARGO_MAKE_OPENSSL_DOWNLOAD_URL} | tar xzf -
 cd openssl-${CARGO_MAKE_OPENSSL_VERSION}
-# todo changed from 86 to arm4
-CC=musl-gcc ./Configure --prefix="$OPENSSL_DIR" no-dso no-ssl2 no-ssl3 linux-armv4 -fPIC
+CC=musl-gcc ./Configure --prefix="$OPENSSL_DIR" no-dso no-ssl2 no-ssl3 linux-x86_64 -fPIC
 make -j"$(nproc)"
 make install
 '''
 
-[tasks.build-release-for-target]
-description = "Makes a release build for a given target"
-category = "Build"
-condition = { env_set = ["CARGO_MAKE_RELEASE_FLOW_TARGET"], env_true = ["CARGO_MAKE_CI"] }
-install_crate = false
-command = "cargo"
-args = [
-  "build",
-  "--release",
-  "--all-features",
-  "--target",
-  "${CARGO_MAKE_RELEASE_FLOW_TARGET}",
-]
-
-[tasks.zip-release-binary-for-target]
-description = "Zips up the release binary, README, and license(s)"
-category = "Publish"
-condition = { env_set = [
-  "CARGO_MAKE_RELEASE_FLOW_TARGET",
-  "CARGO_MAKE_PROJECT_NAME",
-  "CARGO_MAKE_PROJECT_VERSION",
-  "CARGO_MAKE_BINARY_EXECUTABLE_NAME",
-], env_true = ["CARGO_MAKE_CI"] }
-env = { "OUTPUT_NAME" = "${CARGO_MAKE_PROJECT_NAME}-v${CARGO_MAKE_PROJECT_VERSION}-${CARGO_MAKE_RELEASE_FLOW_TARGET}" }
-script_runner = "@shell"
+[tasks.setup-sudo-env]
+description = "Sets the sudo enable/disable environment variables."
+category = "Tools"
 script = '''
-mkdir ${OUTPUT_NAME}
-cp target/$CARGO_MAKE_RELEASE_FLOW_TARGET/release/${CARGO_MAKE_BINARY_EXECUTABLE_NAME} ${OUTPUT_NAME}/
-cp README.md LICENSE* ${OUTPUT_NAME}/
-zip -r ${OUTPUT_NAME}.zip ${OUTPUT_NAME}
+#!@duckscript
+  # disable sudo if the env is defined
+  enable_sudo = not is_defined CARGO_MAKE_SUDO_DISABLE
+
+# always allow sudo in CI
+if equals ${CARGO_MAKE_CI} true
+ enable_sudo = set true
+end
+
+set_env CARGO_MAKE_SUDO_ENABLED ${enable_sudo}
+if equals ${enable_sudo} true
+   set_env CARGO_MAKE_SUDO_COMMAND sudo
+else
+   set_env CARGO_MAKE_SUDO_COMMAND ""
+end
+
+ echo sudo enabled: ${enable_sudo}
 '''
 
