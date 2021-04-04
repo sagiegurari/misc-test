@@ -44,7 +44,7 @@ function install_zip() {
   exit 1
 }
 
-which zip || install_zip()
+which zip || install_zip
 '''
 
 [tasks.setup-musl]
