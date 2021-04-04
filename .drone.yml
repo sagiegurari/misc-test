@@ -11,5 +11,6 @@ steps:
   - apt-get update
   - apt-get install -y musl-tools
   - cargo install cargo-make
+  - cargo make print-env-flowi
   - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-gnueabihf
   - ls -lsa
