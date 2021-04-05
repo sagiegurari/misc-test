@@ -8,19 +8,6 @@ steps:
 - name: test
   image: rust
   commands:
-  - apt-get update
-  - apt-get install -y musl-tools
-  - cargo install --git https://github.com/sagiegurari/cargo-make.git --branch 0.32.17
   - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-gnueabihf
   - ls -lsa
-  when:
-    event: tag
-- name: publish
-  image: plugins/github-release
-  settings:
-    api_key:
-      from_secret: github_release
-    files: ./*.zip
-  when:
-    event: tag
 
