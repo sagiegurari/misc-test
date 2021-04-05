@@ -20,3 +20,8 @@ steps:
   - unzip ./misc-test-v0.1.0-arm-unknown-linux-gnueabihf.zip
   - cd misc-test-v0.1.0-arm-unknown-linux-gnueabihf
   - ./misc-test
+
+trigger:
+  event:
+    include:
+    - tag
