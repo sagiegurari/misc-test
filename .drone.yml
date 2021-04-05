@@ -27,7 +27,7 @@ steps:
   settings:
     api_key:
       from_secret: github_release
-    files: /*.zip
+    files: ./*.zip
   when:
     event: tag
 
