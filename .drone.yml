@@ -20,8 +20,15 @@ steps:
   - unzip ./misc-test-v0.1.0-arm-unknown-linux-gnueabihf.zip
   - cd misc-test-v0.1.0-arm-unknown-linux-gnueabihf
   - ./misc-test
+  when:
+    event: tag
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: github_token
+    files: *.zip
+  when:
+    event: tag
 
-trigger:
-  event:
-    include:
-    - tag
+
