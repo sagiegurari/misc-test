@@ -10,9 +10,9 @@ steps:
   commands:
   - rustup component list --installed
   - apt-get update
-  - apt-get install -y musl-tools arm-linux-musleabihf-gcc
+  - apt-get install -y musl-tools
   - cargo install --git https://github.com/sagiegurari/cargo-make.git --branch 0.32.17
-  - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-musleabihf
+  - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=armv7-unknown-linux-musleabihf
   - ls -lsa
 - name: publish
   image: plugins/github-release
