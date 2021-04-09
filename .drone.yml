@@ -12,7 +12,7 @@ steps:
   - apt-get update
   - apt-get install -y musl-tools
   - cargo install --git https://github.com/sagiegurari/cargo-make.git --branch 0.32.17
-  - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm-unknown-linux-gnueabihf --env CARGO_MAKE_SKIP_MUSL_SETUP=true
+  - cargo make zip-release-ci-flow --env CARGO_MAKE_RELEASE_FLOW_TARGET=arm7-unknown-linux-gnueabihf --env CARGO_MAKE_SKIP_MUSL_SETUP=true
   - ls -lsa
 - name: publish
   image: plugins/github-release
