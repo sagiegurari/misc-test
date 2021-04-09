@@ -8,6 +8,7 @@ steps:
 - name: test
   image: rust
   commands:
+  - rustup component list --installed
   - apt-get update
   - apt-get install -y musl-tools
   - cargo install --git https://github.com/sagiegurari/cargo-make.git --branch 0.32.17
