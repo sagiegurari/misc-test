@@ -2,3 +2,8 @@
 name = "misc-test"
 version = "0.1.0"
 private = true
+
+[dependencies]
+duckscript = "*"
+duckscriptsdk = "*"
+
