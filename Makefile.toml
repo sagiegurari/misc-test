@@ -1,1 +1,22 @@
 
+[tasks.setup-musl]
+clear=true
+description = "Sets up a musl build environment"
+category = "CI"
+condition = { env_set = [
+  "CARGO_MAKE_RELEASE_FLOW_TARGET",
+  "CARGO_MAKE_OPENSSL_VERSION",
+  "CARGO_MAKE_OPENSSL_DOWNLOAD_URL",
+], env_not_set = ["CARGO_MAKE_SKIP_MUSL_SETUP"], env_true = ["CARGO_MAKE_CI"], platforms = ["linux"] }
+env.OPENSSL_DIR = "${HOME}/openssl-musl"
+env.OPENSSL_PLATFORM = { source = "${CARGO_MAKE_RUST_TARGET_ARCH}", default_value = "x86_64", mapping = { "arm" = "armv4" } }
+script = '''
+rustup target add "${CARGO_MAKE_RELEASE_FLOW_TARGET}"
+'''
+
+[tasks.build-release-for-binary-upload]
+clear=true
+alias = "build-release-for-target"
+
+
+
