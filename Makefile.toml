@@ -1,5 +1,5 @@
 
-[tasks.setup-musl]
+[tasks.setup-musl2]
 description = "Sets up a musl build environment"
 category = "CI"
 condition = { env_set = [
@@ -17,10 +17,4 @@ CC=musl-gcc ./Configure --prefix="${OPENSSL_DIR}" no-dso no-ssl2 no-ssl3 linux-$
 make -j"$(nproc)"
 make install
 '''
-
-[tasks.build-release-for-binary-upload]
-clear=true
-alias = "build-release-for-target"
-
-
 
