@@ -8,4 +8,4 @@ jobs:
     steps:
     - name: check token
       run: |
-        echo echo token len expr length "${{ secrets.GITHUB_TOKEN }}"
+        env
