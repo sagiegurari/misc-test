@@ -1,4 +1,7 @@
 
+[tasks.setup-release-build-env-vars]
+env.CARGO_MAKE_BINARY_RELEASE_ENV_ARM_LINUX = { source = "${CARGO_MAKE_RELEASE_FLOW_TARGET}", default_value = "false", mapping = { "arm-unknown-linux-gnueabihf" = "true", "armv7-unknown-linux-gnueabihf" = "true" } }
+
 [tasks.setup-musl2]
 description = "Sets up a musl build environment"
 category = "CI"
