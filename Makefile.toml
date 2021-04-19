@@ -2,6 +2,18 @@
 [tasks.setup-release-build-env-vars]
 env.CARGO_MAKE_BINARY_RELEASE_ENV_ARM_LINUX = { source = "${CARGO_MAKE_RELEASE_FLOW_TARGET}", default_value = "false", mapping = { "arm-unknown-linux-gnueabihf" = "true", "armv7-unknown-linux-gnueabihf" = "true" } }
 
+[tasks.setup-musl]
+condition = { platforms = ["linux"] }
+env.OPENSSL_DIR = "${HOME}/openssl-musl"
+env.OPENSSL_PLATFORM = { source = "${CARGO_MAKE_BINARY_RELEASE_ENV_ARM_LINUX}", default_value = "x86_64", mapping = { "true" = "armv4" } }
+script = '''
+curl ${CARGO_MAKE_OPENSSL_DOWNLOAD_URL} | tar xzf -
+cd openssl-${CARGO_MAKE_OPENSSL_VERSION}
+CC=musl-gcc ./Configure --prefix="${OPENSSL_DIR}" no-dso no-ssl2 no-ssl3 linux-${OPENSSL_PLATFORM} -fPIC
+make -j"$(nproc)"
+make install
+'''
+
 [tasks.setup-musl2]
 description = "Sets up a musl build environment"
 category = "CI"
