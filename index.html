@@ -1,5 +1,10 @@
-<html>
+<!doctypehtml>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible"content="ie=edge">
+    <meta name="viewport"content="width=device-width,initial-scale=1,viewport-fit=cover">
+
     <script>
         async function testWebAuthn() {
             const span = document.getElementById('out');
@@ -32,7 +37,9 @@
                     publicKey: publicKeyCredentialCreationOptions
                 });
                 span.innerText = 'credential - ' + credential;
+                console.log(credential);
             } catch (err) {
+                console.log(err);
                 span.innerText = err;
             }
         }
