@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script>
+        async function testWebAuthn() {
+            const span = document.getElementById('out');
+
+            span.innerText = 'start...';
+            const publicKeyCredentialCreationOptions = {
+                challenge: Uint8Array.from(
+                    'some random stuff', c => c.charCodeAt(0)),
+                rp: {
+                    name: 'my name',
+                    id: 'codepen.io',
+                },
+                user: {
+                    id: Uint8Array.from(
+                        'UZSL85T9AFC', c => c.charCodeAt(0)),
+                    name: 'me@whatever.com',
+                    displayName: 'ME',
+                },
+                pubKeyCredParams: [{ alg: -7, type: 'public-key' }],
+                authenticatorSelection: {
+                    authenticatorAttachment: 'platform',
+                },
+                timeout: 60000,
+                attestation: "direct"
+            };
+
+            span.innerText = 'create...';
+            try {
+                const credential = await navigator.credentials.create({
+                    publicKey: publicKeyCredentialCreationOptions
+                });
+                span.innerText = 'credential - ' + credential;
+            } catch (err) {
+                span.innerText = err;
+            }
+        }
+    </script>
+</head>
+<body>
+<div>
+    <span id="out">----</span><br>
+    <button onclick="testWebAuthn();">Run</button>
+</div>
+</body>
+</html>

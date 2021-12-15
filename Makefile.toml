@@ -1,4 +1,0 @@
-
-[tasks.test-publish]
-env = { "CARGO_MAKE_PROJECT_VERSION" = "1.6.6" }
-run_task = "github-publish-custom-name"
