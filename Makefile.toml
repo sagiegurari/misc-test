@@ -1,4 +1,40 @@
 
-[tasks.test-publish]
-env = { "CARGO_MAKE_PROJECT_VERSION" = "1.6.6" }
-run_task = "github-publish-custom-name"
+[config]
+skip_core_tasks = true
+skip_git_env_info = true
+skip_rust_env_info = true
+skip_crate_env_info = true
+
+[tasks.default]
+alias = "docker_cm"
+
+[tasks.docker_cm]
+script_runner = "@duckscript"
+script = '''
+dockerfile = set ""
+fn add_docker
+    dockerfile = set "${dockerfile}${1}\n"
+end
+
+add_docker "FROM debian:stable"
+add_docker "RUN mkdir /workdir/"
+add_docker "RUN mkdir /workdir/project/"
+add_docker "RUN apt-get update"
+add_docker "RUN apt-get install -y curl build-essential libssl-dev pkg-config"
+add_docker "ENV PATH=\"$PATH:$HOME/.cargo/bin\""
+add_docker "RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+add_docker "RUN $HOME/.cargo/bin/cargo install cargo-make"
+add_docker "RUN $HOME/.cargo/bin/cargo make --version"
+add_docker "RUN echo \"cd ./workdir/project/ && ls -lsa && $HOME/.cargo/bin/cargo make hello-world\" > ./run.sh"
+add_docker "RUN chmod 777 ./run.sh"
+add_docker "ADD . /workdir/project/"
+add_docker "CMD [\"sh\", \"./run.sh\"]"
+
+writefile ./Dockerfile ${dockerfile}
+exec --fail-on-error docker build --tag cmimg:build ./
+exec --fail-on-error docker run cmimg:build
+'''
+
+[tasks.hello-world]
+command = "echo"
+args = ["hello", "world"]
