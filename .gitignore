@@ -6,3 +6,4 @@ temp
 target
 .c9
 *.lock
+.gitpod.yml
