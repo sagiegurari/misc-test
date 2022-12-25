@@ -4,6 +4,7 @@ name: release
 platform:
   arch: arm
 
+
 steps:
 - name: test
   image: rust
