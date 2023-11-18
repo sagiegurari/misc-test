@@ -1,10 +1,4 @@
-.idea
-node_modules
-npm-debug.log
 temp
-/docs/_site
 target
-.c9
 *.lock
 .gitpod.yml
-Dockerfile
